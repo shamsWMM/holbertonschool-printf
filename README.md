@@ -1,6 +1,6 @@
 # \_printf
 
-A custom implementation of the C standard library `printf` function.
+A simplified version of the C standard library `printf` function.
 
 ## Description
 
@@ -12,13 +12,13 @@ This project was built as part of the **Holberton School** curriculum to gain a 
 
 ## Prototype
 
-\`\`\`c
+```c
 int _printf(const char *format, ...);
-\`\`\`
+```
 
 ## Return Value
 
-- On success: the total number of characters printed (excluding the null byte `\0` used to end output to strings).
+- On success: the total number of characters printed (excluding the null terminator `\0).`
 - On failure: `-1` if `format` is `NULL` or if an error occurs.
 
 ---
@@ -52,7 +52,7 @@ This implementation does **not** handle the following:
 | File                | Description                                              |
 |---------------------|----------------------------------------------------------|
 | `_printf.c`         | Core `_printf` function — parses format string and dispatches to handlers |
-| `print_functions.c` | Handler functions for each conversion specifier (`%c`, `%s`, `%d`, `%i`, `%%`) |
+| `print_helpers.c` | Handler functions for each conversion specifier (`%c`, `%s`, `%d`, `%i`, `%%`) |
 | `main.h`            | Header file containing prototypes and struct definitions |
 | `man_3_printf`      | Manual page for the `_printf` function                   |
 | `main.c`            | Test file (optional/example usage)                       |
@@ -63,9 +63,9 @@ This implementation does **not** handle the following:
 
 All files are compiled on **Ubuntu 20.04 LTS** using:
 
-\`\`\`bash
+```bash
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -Wno-format *.c -o printf
-\`\`\`
+```
 
 ---
 
@@ -73,7 +73,7 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -Wno-format *.c -o printf
 
 ### Example
 
-\`\`\`c
+```c
 #include "main.h"
 
 int main(void)
@@ -89,17 +89,17 @@ int main(void)
 
     return (0);
 }
-\`\`\`
+```
 
 ### Expected Output
 
-\`\`\`
+```
 Hello, world! You are number 1.
 Characters printed: 31
 Single char: A
 Negative number: -98
 Percent sign: %
-\`\`\`
+```
 
 ---
 
@@ -107,15 +107,15 @@ Percent sign: %
 
 A custom man page is provided. To view it locally:
 
-\`\`\`bash
+```bash
 man ./man_3_printf
-\`\`\`
+```
 
 ---
 
 ## Flowchart
 
-\`\`\`
+```
          START
            |
            v
@@ -157,17 +157,12 @@ man ./man_3_printf
                               |
                               v
                             END
-\`\`\`
+```
 
 ---
 
 ## Authors
 
-- **Your Name** — [GitHub Profile](https://github.com/yourusername)
-- **Partner Name** — [GitHub Profile](https://github.com/partnerusername)
+- **Shams Watha** — [shamsWMM](https://github.com/shamsWMM)
+- **Venghour Heng** — [hengvenghour7](https://github.com/hengvenghour7)
 
----
-
-## License
-
-This project is part of the Holberton School curriculum. All rights reserved.
