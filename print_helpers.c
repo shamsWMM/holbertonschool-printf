@@ -15,28 +15,34 @@ int _putchar(char c)
 /**
  * print_int - writes the int digits to stdout
  * @d: decimal integer to be printed
- **
+ * @type: either d for decimal or upper or lower case x for hex
+ *
  * Return: On success number of digits printed
  * On error, -1 is returned, and errno is set appropriately
  */
-int print_int(long d)
+int print_int(long d, char type)
 {
-	int count = 0;
-	char *digits = "0123456789";
+	int count = 0, base;
+	char *digits;
 
-	if (d < 0)
+	digits = type == 'X' ? "0123456789ABCDEF" : "0123456789abcdef";
+	base = type == 'x' || type == 'X' ? 16 : type == 'o' ? 8 : 10;
+
+	if (d < 0 && (type == 'u' || type == 'o' || base == 16))
+		return (print_int(-d, type) + 1);
+	else if (d < 0)
 	{
 		_putchar('-');
-		return (print_int(-d) + 1);
+		return (print_int(-d, type) + 1);
 	}
-	else if (d < 10)
+	else if (d < base)
 	{
 		return (_putchar(digits[d]));
 	}
 	else
 	{
-		count = print_int(d / 10);
-		return (count + print_int(d % 10));
+		count = print_int(d / base, type);
+		return (count + print_int(d % base, type));
 	}
 }
 
@@ -58,19 +64,13 @@ int print_str(char *s)
 	return (count);
 }
 
-int print_hex(uintptr_t n)
-{
-	char *hex = "0123456789abcdef";
-	int count = 0;
-	
-	count++;
-	if (n >= 16)
-		print_hex(n / 16);
-	_putchar(hex[n % 16]);
-	return (count);
-}
-
-int print_ptr(void* address)
+/**
+ * print_ptr - writes out pointer address
+ * @address: address to be written
+ *
+ * Return: length of address
+ */
+int print_ptr(void *address)
 {
 	int count = 0;
 	uintptr_t n = (uintptr_t)address;
@@ -78,9 +78,10 @@ int print_ptr(void* address)
 	_putchar('0');
 	_putchar('x');
 	count += 2;
-	count += print_hex(n);
+	count += print_int(n, 'x');
 	return (count);
 }
+
 /**
  * handle_format - handles format string for _printf
  * @format: the format string including specifiers
@@ -95,21 +96,30 @@ int handle_format(char *format, va_list *args)
 	switch (*format)
 	{
 		case 'd':
-			count += print_int(va_arg(*args, int));
+		case 'i':
+			count += print_int(va_arg(*args, int), *format);
 			break;
-		case 's':
-			count += print_str(va_arg(*args, char *));
+		case 'u':
+		case 'o':
+		case 'x':
+		case 'X':
+			count += print_int(va_arg(*args, unsigned int), *format);
 			break;
 		case 'p':
 			count += print_ptr(va_arg(*args, void *));
 			break;
+		case 's':
+			count += print_str(va_arg(*args, char *));
+			break;
 		case 'c':
 			count += _putchar(va_arg(*args, int));
 			break;
-		case '%' :
-			count += _putchar('%');
+		case '%':
+			count += _putchar(*format);
 			break;
-		default :
+		default:
+			count += _putchar('%');
+			count += _putchar(*format);
 			break;
 	}
 	return (count);
