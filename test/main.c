@@ -15,8 +15,7 @@ int main(void)
 	void *addr;
 
 	_putchar('c');
-	_printf("\nhh %s\n venghour %d\n address_ %p", "benny", 5, &len);
-	/**
+	_printf("\nhh %s\n venghour %d\n address_ %p\n", "benny", 5, &len);
 	len = _printf("Let's try to printf a simple sentence.\n");
 	len2 = printf("Let's try to printf a simple sentence.\n");
 	ui = (unsigned int)INT_MAX + 1024;
@@ -43,6 +42,6 @@ int main(void)
 	printf("Len:[%d]\n", len2);
 	_printf("Unknown:[%r]\n");
 	printf("Unknown:[%r]\n");
-	*/
+
 	return (0);
 }
