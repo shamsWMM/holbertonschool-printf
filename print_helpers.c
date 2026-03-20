@@ -26,7 +26,7 @@ int print_int(long d)
 
 	if (d < 0)
 	{
-		write(1, "-", 1);
+		_putchar('-');
 		return (print_int(-d) + 1);
 	}
 	else if (d < 10)
@@ -52,10 +52,33 @@ int print_str(char *s)
 	int count = 0;
 
 	while (*s)
-		count += write(1, s++, 1);
+		count += _putchar(*s++);
 	return (count);
 }
 
+int print_hex(uintptr_t n)
+{
+	char *hex = "0123456789abcdef";
+	int count = 0;
+	
+	count++;
+	if (n >= 16)
+		print_hex(n / 16);
+	_putchar(hex[n % 16]);
+	return (count);
+}
+
+int print_ptr(void* address)
+{
+	int count = 0;
+	uintptr_t n = (uintptr_t)address;
+
+	_putchar('0');
+	_putchar('x');
+	count += 2;
+	count += print_hex(n);
+	return (count);
+}
 /**
  * handle_format - handles format string for _printf
  * @format: the format string including specifiers
@@ -74,6 +97,9 @@ int handle_format(char *format, va_list *args)
 			break;
 		case 's':
 			count += print_str(va_arg(*args, char *));
+			break;
+		case 'p':
+			count += print_ptr(va_arg(*args, void *));
 			break;
 		case 'c':
 			count += _putchar(va_arg(*args, int));
