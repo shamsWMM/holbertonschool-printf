@@ -107,9 +107,12 @@ int handle_format(char *format, va_list *args)
 			count += _putchar(va_arg(*args, int));
 			break;
 		case '%' :
-			_putchar('%');
+			count += _putchar('%');
 			break;
 		default :
+			_putchar('%');
+			_putchar(*format);
+			count += 2;
 			break;
 	}
 	return (count);
