@@ -106,6 +106,11 @@ int handle_format(char *format, va_list *args)
 		case 'c':
 			count += _putchar(va_arg(*args, int));
 			break;
+		case '%' :
+			_putchar('%');
+			break;
+		default :
+			break;
 	}
 	return (count);
 }
