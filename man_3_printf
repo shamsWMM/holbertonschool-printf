@@ -1,0 +1,96 @@
+.TH _PRINTF 3 "March 2026" "1.0" "Custom Printf Library"
+
+.SH NAME
+_printf \- formatted output conversion
+
+.SH SYNOPSIS
+.B #include "main.h"
+.PP
+.B int _printf(const char *\fIformat\fR, ...);
+
+.SH DESCRIPTION
+The \fB_printf()\fR function produces output according to a \fIformat\fR string. 
+It writes output to \fBstdout\fR, the standard output stream.
+
+The format string is composed of zero or more directives: ordinary characters 
+(not \fB%\fR), which are copied unchanged to the output stream; and conversion 
+specifications, each of which results in fetching zero or more subsequent arguments.
+
+.SS Conversion Specifiers
+The following conversion specifiers are supported:
+
+.TP
+.B %c
+Prints a single character.
+
+.TP
+.B %s
+Prints a string of characters.
+
+.TP
+.B %d, %i
+Prints a signed decimal integer.
+
+.TP
+.B %u
+Prints an unsigned decimal integer.
+
+.TP
+.B %o
+Prints an unsigned octal integer.
+
+.TP
+.B %x
+Prints an unsigned hexadecimal integer (lowercase).
+
+.TP
+.B %X
+Prints an unsigned hexadecimal integer (uppercase).
+
+.TP
+.B %p
+Prints a pointer address in hexadecimal.
+
+.TP
+.B %%
+Prints a literal percent sign.
+
+.SH RETURN VALUE
+On success, \fB_printf()\fR returns the number of characters printed 
+(excluding the null byte used to end output to strings).
+
+On error, \fB-1\fR is returned if \fIformat\fR is NULL or if the format 
+string ends with a single \fB%\fR.
+
+.SH EXAMPLES
+.PP
+Print a string:
+.PP
+.RS
+_printf("Hello, %s!\\n", "world");
+.RE
+
+.PP
+Print an integer:
+.PP
+.RS
+_printf("Number: %d\\n", 42);
+.RE
+
+.PP
+Print in hexadecimal:
+.PP
+.RS
+_printf("Hex: %x\\n", 255);
+.RE
+
+.SH SEE ALSO
+.BR printf (3),
+.BR write (2),
+.BR stdarg (3)
+
+.SH BUGS
+No known bugs.
+
+.SH AUTHORS
+Written by Venghour and Shams.
