@@ -110,9 +110,6 @@ int handle_format(char *format, va_list *args)
 			count += _putchar('%');
 			break;
 		default :
-			_putchar('%');
-			_putchar(*format);
-			count += 2;
 			break;
 	}
 	return (count);
