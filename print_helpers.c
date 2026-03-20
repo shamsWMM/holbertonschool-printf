@@ -51,6 +51,8 @@ int print_str(char *s)
 {
 	int count = 0;
 
+	if (s == NULL)
+		s = "(null)";
 	while (*s)
 		count += _putchar(*s++);
 	return (count);
