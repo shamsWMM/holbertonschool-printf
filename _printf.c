@@ -17,7 +17,12 @@ int _printf(char *format, ...)
 	va_start(args, format);
 	while (format && format[i])
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && !format[i + 1])
+		{
+			va_end(args);
+			return (-1);
+		}
+		else if (format[i] == '%')
 		{
 			count += handle_format(format + i + 1, &args);
 			i += 2;
