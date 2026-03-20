@@ -23,32 +23,40 @@ int _printf(char *format, ...)
 	va_end(args);
 	return (count);
 }
-int handle_format(char *format, va_list *args)
-{
-	int index = 0;
-	char *str;
 
-	switch(*format)
+/**
+ * print_all - print all
+ * @format: pattern of arguments
+void print_all(const char * const format, ...)
+{
+va_list args;
+char *separator = "";
+unsigned int count, index = 0;
+type_print tp[] = {
+	{'c', print_char},
+	{'s', print_string},
+	{'i', print_int},
+	{'f', print_float},
+	{0, NULL}
+};
+
+va_start(args, format);
+while (format && format[index])
+{
+	count = 0;
+	while (tp[count].type)
 	{
-		case 'd':
-			_putchar( '0' + va_arg(*args, int));
-			break;
-		case 's':
-			str = va_arg(*args, char *);
-			while(str[index])
-			{
-				_putchar(str[index]);
-				index++;
-			}
-			break;
-		/**case 'p':
-			str = va_arg(*args, void *);
-			break;
-		*/
-		default:
-			_putchar(*format);
-			break;
-	
+		if (format[index] == tp[count].type)
+		{
+			printf("%s", separator);
+			tp[count].print_type(args);
+			separator = ", ";
+		}
+		count++;
 	}
-	return (0);
+	index++;
 }
+printf("\n");
+va_end(args);
+}
+*/
