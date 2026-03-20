@@ -50,6 +50,7 @@ int print_int(long d)
 int print_str(char *s)
 {
 	int count = 0;
+
 	if (s == NULL)
 		s = "(null)";
 	while (*s)
