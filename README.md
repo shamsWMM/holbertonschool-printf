@@ -161,8 +161,15 @@ man ./man_3_printf
 
 ---
 
-## Authors
+## Testing
+A test file is provided in the `test/` directory.
+Compile and run it:
+```bash
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 _printf.c print_helpers.c test/main.c -o test_printf
+./test_printf
+```
 
+## Authors
 - **Shams Watha** — [shamsWMM](https://github.com/shamsWMM)
 - **Venghour Heng** — [hengvenghour7](https://github.com/hengvenghour7)
 
