@@ -168,6 +168,23 @@ Compile and run it:
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 _printf.c print_helpers.c test/main.c -o test_printf
 ./test_printf
 ```
+---
+
+# Branching Strategy
+
+## Branch Types
+- **main**
+- **feature/\***
+- **bugfix/\***
+
+## Workflow
+1. Create a branch: `git checkout -b feature/<feature-name>`
+2. Push to remote: `git push -u origin feature/<feature-name>`
+3. Open a Pull Request on GitHub
+4. Code review with teammate
+5. Merge when approved
+
+---
 
 ## Authors
 - **Shams Watha** — [shamsWMM](https://github.com/shamsWMM)
